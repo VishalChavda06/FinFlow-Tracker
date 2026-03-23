@@ -1,8 +1,8 @@
 import React from 'react';
-import { useApp } from '../context/AppContext';
-import { exportToCSV } from '../utils/helpers';
-import { CURRENCIES } from '../utils/constants';
-import styles from './Topbar.module.css';
+import { useApp } from '../../context/AppContext';
+import { exportToCSV } from '../../utils/helpers';
+import { CURRENCIES } from '../../utils/constants';
+import styles from '../css/Topbar.module.css';
 
 export default function Topbar() {
   const { currency, changeCurrency, theme, toggleTheme, transactions, showToast } = useApp();
@@ -35,3 +35,4 @@ export default function Topbar() {
     </header>
   );
 }
+

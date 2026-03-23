@@ -119,3 +119,4 @@
   background: linear-gradient(90deg, var(--income-a), var(--income-b));
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
+

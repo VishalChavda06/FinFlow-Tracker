@@ -1,0 +1,90 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 24px;
+  width: 100%;
+  max-width: 430px;
+  box-shadow: var(--shadow);
+}
+
+.title {
+  font-family: var(--font-head);
+  color: var(--text);
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.info {
+  color: var(--text2);
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.preview {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.desc {
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  color: var(--text2);
+  font-size: 0.82rem;
+}
+
+.amount {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btnCancel,
+.btnDelete {
+  flex: 1;
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-head);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.btnCancel {
+  background: var(--card2);
+  color: var(--text2);
+  border: 1px solid var(--border);
+}
+
+.btnDelete {
+  background: linear-gradient(135deg, var(--expense-a), var(--expense-b));
+  color: #fff;
+}
+

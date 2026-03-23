@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useApp } from '../context/AppContext';
-import { CATEGORIES, CAT_EMOJI } from '../utils/constants';
-import { todayISO } from '../utils/helpers';
-import styles from './AddTransactionForm.module.css';
+import { useApp } from '../../context/AppContext';
+import { CATEGORIES, CAT_EMOJI } from '../../utils/constants';
+import { todayISO } from '../../utils/helpers';
+import styles from '../css/AddTransactionForm.module.css';
 
 export default function AddTransactionForm() {
   const { addTransaction, showToast } = useApp();
@@ -169,3 +169,4 @@ export default function AddTransactionForm() {
     </div>
   );
 }
+

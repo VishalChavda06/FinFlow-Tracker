@@ -1,7 +1,7 @@
 import React from 'react';
-import { useApp } from '../context/AppContext';
+import { useApp } from '../../context/AppContext';
 import TransactionItem from './TransactionItem';
-import styles from './RecurringList.module.css';
+import styles from '../css/RecurringList.module.css';
 
 export default function RecurringList() {
   const { transactions } = useApp();
@@ -51,3 +51,4 @@ export default function RecurringList() {
     </div>
   );
 }
+

@@ -6,10 +6,10 @@ import {
   Title, Tooltip, Legend, Filler,
 } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
-import { useApp } from '../context/AppContext';
-import { getLast7Months } from '../utils/helpers';
-import { CURRENCIES } from '../utils/constants';
-import styles from './ChartPanel.module.css';
+import { useApp } from '../../context/AppContext';
+import { getLast7Months } from '../../utils/helpers';
+import { CURRENCIES } from '../../utils/constants';
+import styles from '../css/ChartPanel.module.css';
 
 ChartJS.register(
   CategoryScale, LinearScale,
@@ -168,3 +168,4 @@ export default function ChartPanel() {
     </div>
   );
 }
+

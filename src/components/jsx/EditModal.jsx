@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useApp } from '../context/AppContext';
-import { CATEGORIES, CAT_EMOJI } from '../utils/constants';
-import styles from './EditModal.module.css';
+import { useApp } from '../../context/AppContext';
+import { CATEGORIES, CAT_EMOJI } from '../../utils/constants';
+import styles from '../css/EditModal.module.css';
 
 export default function EditModal() {
   const { editTarget, setEditTarget, updateTransaction, showToast } = useApp();
@@ -98,3 +98,4 @@ export default function EditModal() {
     </div>
   );
 }
+

@@ -1,6 +1,6 @@
 import React from 'react';
-import { useApp } from '../context/AppContext';
-import styles from './Toast.module.css';
+import { useApp } from '../../context/AppContext';
+import styles from '../css/Toast.module.css';
 
 export default function Toast() {
   const { toast } = useApp();
@@ -11,3 +11,4 @@ export default function Toast() {
     </div>
   );
 }
+

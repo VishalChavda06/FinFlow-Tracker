@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { useApp } from '../context/AppContext';
+import { useApp } from '../../context/AppContext';
 import TransactionItem from './TransactionItem';
-import styles from './TransactionList.module.css';
+import styles from '../css/TransactionList.module.css';
 
 const FILTERS = ['all', 'income', 'expense'];
 
@@ -80,3 +80,4 @@ export default function TransactionList() {
     </div>
   );
 }
+

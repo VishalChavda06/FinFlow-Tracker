@@ -17,8 +17,9 @@ export function AppProvider({ children }) {
   );
 
   const [toast, setToast] = useState({ msg: '', visible: false });
-  const [activeTab, setActiveTab] = useState('add');
+  const [activeTab, setActiveTab] = useState('home');
   const [editTarget, setEditTarget] = useState(null); // transaction being edited
+  const [deleteTarget, setDeleteTarget] = useState(null); // transaction pending delete
 
   const persist = useCallback((txns) => {
     setTransactions(txns);
@@ -36,6 +37,12 @@ export function AppProvider({ children }) {
   const deleteTransaction = useCallback((id) => {
     persist(transactions.filter((t) => t.id !== id));
   }, [transactions, persist]);
+
+  const confirmDeleteTransaction = useCallback(() => {
+    if (!deleteTarget) return;
+    deleteTransaction(deleteTarget.id);
+    setDeleteTarget(null);
+  }, [deleteTarget, deleteTransaction]);
 
   const showToast = useCallback((msg) => {
     setToast({ msg, visible: true });
@@ -59,19 +66,30 @@ export function AppProvider({ children }) {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
-  const income  = transactions.filter((t) => t.type === 'income').reduce((s, t) => s + t.amount, 0);
-  const expense = transactions.filter((t) => t.type === 'expense').reduce((s, t) => s + t.amount, 0);
+  // Dashboard summary is month-scoped. Full transaction history remains intact.
+  const now = new Date();
+  const monthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+  const monthTransactions = transactions.filter((t) => (t.date ?? '').startsWith(monthKey));
+
+  const income  = monthTransactions.filter((t) => t.type === 'income').reduce((s, t) => s + t.amount, 0);
+  const expense = monthTransactions.filter((t) => t.type === 'expense').reduce((s, t) => s + t.amount, 0);
   const balance = income - expense;
 
   return (
     <AppContext.Provider value={{
       transactions, addTransaction, updateTransaction, deleteTransaction,
+      deleteTarget, setDeleteTarget, confirmDeleteTransaction,
       currency, changeCurrency,
       theme, toggleTheme,
       toast, showToast,
       activeTab, setActiveTab,
       editTarget, setEditTarget,
-      summary: { income, expense, balance },
+      summary: {
+        income, expense, balance,
+        periodLabel: now.toLocaleDateString('en', { month: 'long', year: 'numeric' }),
+        incomeCount: monthTransactions.filter((t) => t.type === 'income').length,
+        expenseCount: monthTransactions.filter((t) => t.type === 'expense').length,
+      },
     }}>
       {children}
     </AppContext.Provider>

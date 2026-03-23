@@ -1,16 +1,11 @@
 import React from 'react';
-import { useApp } from '../context/AppContext';
-import { formatAmount, formatDate } from '../utils/helpers';
-import styles from './TransactionItem.module.css';
+import { useApp } from '../../context/AppContext';
+import { formatAmount, formatDate } from '../../utils/helpers';
+import styles from '../css/TransactionItem.module.css';
 
 export default function TransactionItem({ transaction, index = 0 }) {
-  const { deleteTransaction, setEditTarget, showToast, currency } = useApp();
+  const { setDeleteTarget, setEditTarget, currency } = useApp();
   const t = transaction;
-
-  function handleDelete() {
-    deleteTransaction(t.id);
-    showToast('🗑️ Transaction removed');
-  }
 
   return (
     <div className={styles.item} style={{ animationDelay: `${index * 0.04}s` }}>
@@ -39,10 +34,11 @@ export default function TransactionItem({ transaction, index = 0 }) {
         >✏️</button>
         <button
           className={`${styles.btn} ${styles.del}`}
-          onClick={handleDelete}
+          onClick={() => setDeleteTarget(t)}
           title="Delete"
         >✕</button>
       </div>
     </div>
   );
 }
+

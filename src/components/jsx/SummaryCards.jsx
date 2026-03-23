@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { useApp } from '../context/AppContext';
-import { formatAmount } from '../utils/helpers';
-import styles from './SummaryCards.module.css';
+import { useApp } from '../../context/AppContext';
+import { formatAmount } from '../../utils/helpers';
+import styles from '../css/SummaryCards.module.css';
 
 function StatCard({ variant, icon, label, value, sub }) {
   const valRef = useRef(null);
@@ -28,10 +28,9 @@ function StatCard({ variant, icon, label, value, sub }) {
 
 export default function SummaryCards() {
   const { summary, currency, transactions } = useApp();
-  const { income, expense, balance } = summary;
-
-  const incCount = transactions.filter((t) => t.type === 'income').length;
-  const expCount = transactions.filter((t) => t.type === 'expense').length;
+  const {
+    income, expense, balance, periodLabel, incomeCount, expenseCount,
+  } = summary;
 
   const total = income + expense;
   const pct   = total ? Math.round((income / total) * 100) : 0;
@@ -42,23 +41,23 @@ export default function SummaryCards() {
         <StatCard
           variant="balance"
           icon="💎"
-          label="Net Balance"
+          label={`Net Balance (${periodLabel})`}
           value={formatAmount(balance, currency)}
           sub={balance >= 0 ? `+${formatAmount(balance, currency)} surplus` : `${formatAmount(balance, currency)} deficit`}
         />
         <StatCard
           variant="income"
           icon="📈"
-          label="Total Income"
+          label={`Income (${periodLabel})`}
           value={formatAmount(income, currency)}
-          sub={`${incCount} transaction${incCount !== 1 ? 's' : ''}`}
+          sub={`${incomeCount} transaction${incomeCount !== 1 ? 's' : ''}`}
         />
         <StatCard
           variant="expense"
           icon="📉"
-          label="Total Expenses"
+          label={`Expenses (${periodLabel})`}
           value={formatAmount(expense, currency)}
-          sub={`${expCount} transaction${expCount !== 1 ? 's' : ''}`}
+          sub={`${expenseCount} transaction${expenseCount !== 1 ? 's' : ''}`}
         />
       </div>
 
@@ -71,6 +70,13 @@ export default function SummaryCards() {
           <div className={styles.ratioFill} style={{ width: `${pct}%` }} />
         </div>
       </div>
+      <div className={`${styles.ratioWrap} anim-fade-up`} style={{ animationDelay: '0.18s' }}>
+        <div className={styles.ratioLabel}>
+          <span>🗂️ Stored history</span>
+          <span>{transactions.length} total transaction{transactions.length !== 1 ? 's' : ''}</span>
+        </div>
+      </div>
     </>
   );
 }
+

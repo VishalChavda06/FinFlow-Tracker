@@ -1,12 +1,13 @@
 import React from 'react';
-import { useApp } from '../context/AppContext';
-import styles from './TabNav.module.css';
+import { useApp } from '../../context/AppContext';
+import styles from '../css/TabNav.module.css';
 
 const TABS = [
-  { id: 'add',          label: '➕ Add' },
-  { id: 'transactions', label: '📋 Transactions' },
-  { id: 'recurring',   label: '🔄 Recurring' },
-  { id: 'chart',       label: '📊 Chart' },
+  { id: 'home', icon: '🏠', label: 'Home' },
+  { id: 'add', icon: '➕', label: 'Add' },
+  { id: 'transactions', icon: '📋', label: 'Transactions' },
+  { id: 'recurring', icon: '🔄', label: 'Recurring' },
+  { id: 'chart', icon: '📊', label: 'Chart' },
 ];
 
 export default function TabNav() {
@@ -20,9 +21,11 @@ export default function TabNav() {
           className={`${styles.btn} ${activeTab === tab.id ? styles.active : ''}`}
           onClick={() => setActiveTab(tab.id)}
         >
-          {tab.label}
+          <span className={styles.icon}>{tab.icon}</span>
+          <span className={styles.label}>{tab.label}</span>
         </button>
       ))}
     </nav>
   );
 }
+
