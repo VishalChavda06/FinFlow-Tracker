@@ -1,0 +1,121 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.25s, box-shadow 0.25s;
+  cursor: default;
+}
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.balance {
+  background: linear-gradient(145deg, #1e1b4b, var(--card));
+}
+.balance::after {
+  background: linear-gradient(135deg, var(--balance-a), var(--balance-b));
+}
+[data-theme='light'] .balance { background: linear-gradient(145deg, #ede9fe, #fff); }
+
+.income { background: linear-gradient(145deg, #062a25, #0d1f2d); }
+.income::after { background: linear-gradient(135deg, var(--income-a), var(--income-b)); }
+[data-theme='light'] .income { background: linear-gradient(145deg, #d1fae5, #fff); }
+
+.expense { background: linear-gradient(145deg, #2a0a1a, #1a1020); }
+.expense::after { background: linear-gradient(135deg, var(--expense-a), var(--expense-b)); }
+[data-theme='light'] .expense { background: linear-gradient(145deg, #ffe4e6, #fff); }
+
+.icon {
+  width: 38px; height: 38px;
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+  position: relative; z-index: 1;
+}
+.balance .icon { background: rgba(167, 139, 250, 0.2); }
+.income  .icon { background: rgba(0, 229, 160, 0.2); }
+.expense .icon { background: rgba(255, 107, 107, 0.2); }
+
+.label {
+  font-size: 0.68rem;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+  font-weight: 500;
+  position: relative; z-index: 1;
+}
+
+.value {
+  font-family: var(--font-head);
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1px;
+  position: relative; z-index: 1;
+}
+.balance .value { background: linear-gradient(135deg, var(--balance-a), var(--balance-b)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.income  .value { background: linear-gradient(135deg, var(--income-a), var(--income-b));  -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.expense .value { background: linear-gradient(135deg, var(--expense-a), var(--expense-b)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+.sub {
+  font-size: 0.74rem;
+  color: var(--muted);
+  margin-top: 5px;
+  position: relative; z-index: 1;
+}
+
+.pop { animation: numPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+@keyframes numPop {
+  from { transform: scale(0.84); opacity: 0.4; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+/* ratio */
+.ratioWrap {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 22px;
+  margin-bottom: 24px;
+}
+.ratioLabel {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 9px;
+}
+.ratioBar {
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255, 107, 107, 0.22);
+  overflow: hidden;
+}
+.ratioFill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--income-a), var(--income-b));
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}

@@ -1,0 +1,40 @@
+.nav {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 22px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 6px;
+}
+
+.btn {
+  flex: 1;
+  padding: 9px 10px;
+  border: none;
+  border-radius: 11px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: transparent;
+  transition: all 0.22s;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  color: var(--text2);
+  background: var(--card2);
+}
+
+.btn.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 3px 12px rgba(124, 58, 237, 0.35);
+}
+
+@media (max-width: 480px) {
+  .nav { flex-wrap: wrap; }
+  .btn { flex: 1 1 40%; }
+}

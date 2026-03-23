@@ -1,0 +1,103 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 13px 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: slideIn 0.3s ease both;
+}
+
+.item:hover {
+  transform: translateX(3px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.dot {
+  width: 39px; height: 39px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.05rem;
+}
+.dot.income  { background: rgba(0, 229, 160, 0.14); }
+.dot.expense { background: rgba(255, 107, 107, 0.14); }
+
+.info { flex: 1; min-width: 0; }
+
+.name {
+  font-weight: 500;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  font-size: 0.71rem;
+  color: var(--muted);
+  margin-top: 3px;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: rgba(124, 58, 237, 0.18);
+  color: #c4b5fd;
+  padding: 1px 8px;
+  border-radius: 99px;
+  font-size: 0.68rem;
+  font-weight: 500;
+}
+
+.recurBadge {
+  background: rgba(0, 229, 160, 0.12);
+  color: var(--income-a);
+  padding: 1px 8px;
+  border-radius: 99px;
+  font-size: 0.68rem;
+}
+
+.amount {
+  font-family: var(--font-head);
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  white-space: nowrap;
+}
+.amount.income  { color: var(--income-a); }
+.amount.expense { color: var(--expense-a); }
+
+.actions { display: flex; gap: 4px; flex-shrink: 0; }
+
+.btn {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  transition: all 0.18s;
+}
+
+.btn.edit:hover {
+  border-color: var(--income-b);
+  color: var(--income-b);
+  background: rgba(0, 180, 216, 0.08);
+}
+
+.btn.del:hover {
+  border-color: var(--expense-a);
+  color: var(--expense-a);
+  background: rgba(255, 107, 107, 0.08);
+}

@@ -1,0 +1,177 @@
+.box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px;
+  transition: outline 0.3s;
+}
+
+.shake {
+  outline: 1.5px solid var(--expense-a);
+  animation: shakeAnim 0.5s ease;
+}
+
+@keyframes shakeAnim {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+.title {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.full { grid-column: span 2; }
+
+@media (max-width: 520px) {
+  .grid { grid-template-columns: 1fr; }
+  .full { grid-column: span 1; }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.68rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.field input,
+.field select {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 11px 14px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: rgba(124, 58, 237, 0.55);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.field select option { background: var(--card); }
+
+/* type toggle */
+.typeToggle {
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  height: 44px;
+}
+
+.tIncome, .tExpense {
+  flex: 1;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.tIncome { background: rgba(0, 229, 160, 0.08); color: var(--income-a); }
+.tIncome.active { background: linear-gradient(135deg, rgba(0,229,160,.28), rgba(0,180,216,.18)); color: #fff; }
+
+.tExpense { background: rgba(255, 107, 107, 0.08); color: var(--expense-a); }
+.tExpense.active { background: linear-gradient(135deg, rgba(255,107,107,.28), rgba(247,37,133,.18)); color: #fff; }
+
+/* pills */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 2px;
+}
+
+.pill {
+  padding: 5px 13px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--card2);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.pill:hover { border-color: var(--accent); color: var(--accent); }
+.pillSel { background: var(--accent); color: #fff; border-color: transparent; }
+
+/* recurring */
+.recurRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  font-size: 0.85rem;
+  color: var(--text2);
+}
+
+.recurActive { border-color: rgba(124, 58, 237, 0.4); }
+
+.recurRow input[type='checkbox'] {
+  accent-color: var(--accent);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  border-radius: 4px;
+}
+
+/* add button */
+.btnAdd {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border: none;
+  border-radius: 12px;
+  padding: 13px 28px;
+  color: #fff;
+  font-family: var(--font-head);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+}
+
+.btnAdd:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 28px rgba(124, 58, 237, 0.45);
+}
+
+.btnAdd:active { transform: scale(0.97); }
